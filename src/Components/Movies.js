@@ -40,7 +40,7 @@ function Movies() {
 
                            return (
                           
-                            <div class="container">
+                            <div class="containers">
                         <div class="cellphone-container">    
                             <div class="movie">       
                               <div class="menu"><i class="material-icons"></i></div>

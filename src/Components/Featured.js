@@ -83,7 +83,7 @@ function Featured() {
 
                            return (
                           <div>
-                            <div class="container" onClick={handleClickOpenss} >
+                            <div class="containers" onClick={handleClickOpenss} >
                         <div class="cellphone-container">    
                             <div class="movie">       
                               <div class="menu"><i class="material-icons"></i></div>
