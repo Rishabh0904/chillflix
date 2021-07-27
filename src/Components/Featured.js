@@ -14,6 +14,10 @@ import IconButton from '@material-ui/core/IconButton';
 import Typography from '@material-ui/core/Typography';
 import CloseIcon from '@material-ui/icons/Close';
 import Slide from '@material-ui/core/Slide';
+import "../../node_modules/video-react/dist/video-react.css";
+// import "node_modules/video-react/dist/video-react.css"
+import { Player } from 'video-react'
+<link rel="stylesheet" href="/css/video-react.css" />
 
 const useStyles = makeStyles((theme) => ({
   appBar: {
@@ -145,15 +149,11 @@ function Featured() {
             </Button>
           </Toolbar>
         </AppBar>
-        <List>
-          <ListItem button>
-            <ListItemText primary="Phone ringtone" secondary="Titania" />
-          </ListItem>
-          <Divider />
-          <ListItem button>
-            <ListItemText primary="Default notification ringtone" secondary="Tethys" />
-          </ListItem>
-        </List>
+        <Player
+      playsInline
+      poster="/assets/poster.png"
+      src="https://media.w3.org/2010/05/sintel/trailer_hd.mp4"
+    />
       </Dialog>
 </div>
 
