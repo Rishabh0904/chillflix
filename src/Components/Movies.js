@@ -2,12 +2,11 @@ import React,{useState,useEffect} from 'react'
 import axios from 'axios'
 import  './Card.css';
 import './Pagination.css'
-
 function Movies() {
  
      let[movie,setMovie]=useState([]);
      const [count,setCount]=useState(1);
-
+     
     const arr=[];
     for(let i=0;i<7;i++)
     {
@@ -50,7 +49,6 @@ function Movies() {
                                   <div class="col1">
                                     <h1 class="heading" >{obj.title}</h1>
                                     <ul class="movie-gen">
-                                      <li>PG-13  /</li>
                                       <li>2h 49min  /</li>
                                       <li>Adventure, Drama, Sci-Fi,</li>
                                     </ul>

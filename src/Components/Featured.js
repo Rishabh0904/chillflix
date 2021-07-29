@@ -17,6 +17,7 @@ import Slide from '@material-ui/core/Slide';
 import "../../node_modules/video-react/dist/video-react.css";
 // import "node_modules/video-react/dist/video-react.css"
 import { Player } from 'video-react'
+import {database} from '../Firebase'
 <link rel="stylesheet" href="/css/video-react.css" />
 
 const useStyles = makeStyles((theme) => ({
@@ -38,9 +39,27 @@ function Featured() {
      const [count,setCount]=useState(1);
      const classes = useStyles();
      const [opens, setOpen] =useState(false);
-   
-     const handleClickOpenss = () => {
+      const [par,setpar]=useState([]);
+      const [curr,setCurr]=useState(0);
+     useEffect(()=>{
+      database.posts.onSnapshot(querySnapshot=>{
+        let arr=[];
+        querySnapshot.forEach((doc,idx)=>{
+              let da=doc.data().pUrl;
+              arr.push(da);
+        })
+
+        setpar(arr);
+        
+
+      })
+
+     },[])
+
+     const handleClickOpenss=(idx)=> {
+    
        setOpen(true);
+       setCurr(idx);
        console.log("open");
      };
    
@@ -52,7 +71,6 @@ function Featured() {
     const arr=[];
     for(let i=0;i<7;i++)
     {
-      console.log(count+i);
         arr[i]=count+i;
     }
 
@@ -69,7 +87,13 @@ function Featured() {
         .then(({data})=>{
             setMovie(data.results);
         })
+        
+       
+
+       
      },[count])
+
+
 
     return (        
         <>
@@ -79,11 +103,14 @@ function Featured() {
                     
                     <div class="card_container" >
 
-                       { movie.map((obj)=>{
+                       { movie.map((obj,index)=>{
 
+                         let url;  
+                         url=par[index%5];                   
+                         console.log("url "+(index%5)+"  "+url);        
                            return (
                           <div>
-                            <div class="containers" onClick={handleClickOpenss} >
+                            <div class="containers" id={index%14} onClick={()=>{handleClickOpenss(index)}} >
                         <div class="cellphone-container">    
                             <div class="movie">       
                               <div class="menu"><i class="material-icons"></i></div>
@@ -149,12 +176,14 @@ function Featured() {
             </Button>
           </Toolbar>
         </AppBar>
+        
+
         <Player
       playsInline
-      poster="/assets/poster.png"
-      src="https://media.w3.org/2010/05/sintel/trailer_hd.mp4"
-    />
+      poster="/assets/poster.png"  
+      src={par[curr]} />
       </Dialog>
+
 </div>
 
                            ); })
